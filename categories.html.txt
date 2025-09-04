@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CNN Clone - Categories</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>CNN Clone</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>News Categories</h2>
+    <div id="category-list"></div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

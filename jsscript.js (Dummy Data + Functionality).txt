@@ -1,0 +1,70 @@
+// Dummy News Data
+const newsData = [
+  {
+    title: "🌍 World News: Global Summit",
+    description: "World leaders meet to discuss climate change...",
+    content: "Today, world leaders gathered at the climate summit to address global warming and sustainable development...",
+    category: "World"
+  },
+  {
+    title: "🏏 Sports: Cricket Update",
+    description: "Pakistan won the thrilling cricket match...",
+    content: "Pakistan defeated their rival team by 5 wickets in a nail-biting finish...",
+    category: "Sports"
+  },
+  {
+    title: "💻 Technology: New Smartphone Released",
+    description: "A new smartphone model launched today...",
+    content: "The latest smartphone comes with an AI camera, faster processor, and long-lasting battery...",
+    category: "Technology"
+  },
+  {
+    title: "🎬 Entertainment: New Movie Hits Box Office",
+    description: "The latest blockbuster breaks records...",
+    content: "A new movie has broken all box office records and received positive reviews...",
+    category: "Entertainment"
+  }
+];
+
+// Homepage news list
+if (document.getElementById("news-list")) {
+  const newsList = document.getElementById("news-list");
+  newsData.forEach((news, index) => {
+    const article = document.createElement("article");
+    article.innerHTML = `
+      <h3><a href="article.html?id=${index}">${news.title}</a></h3>
+      <p>${news.description}</p>
+    `;
+    newsList.appendChild(article);
+  });
+}
+
+// Categories page
+if (document.getElementById("category-list")) {
+  const categoryList = document.getElementById("category-list");
+  const categories = [...new Set(newsData.map(news => news.category))];
+
+  categories.forEach(cat => {
+    const section = document.createElement("section");
+    section.innerHTML = `<h3>${cat}</h3>`;
+    newsData.filter(news => news.category === cat).forEach((news, index) => {
+      section.innerHTML += `
+        <p><a href="article.html?id=${index}">${news.title}</a></p>
+      `;
+    });
+    categoryList.appendChild(section);
+  });
+}
+
+// Article page
+if (document.getElementById("article-content")) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const newsId = urlParams.get("id");
+  const articleData = newsData[newsId];
+  if (articleData) {
+    document.getElementById("article-content").innerHTML = `
+      <h2>${articleData.title}</h2>
+      <p>${articleData.content}</p>
+    `;
+  }
+}
